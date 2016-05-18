@@ -1,0 +1,57 @@
+.bookmark
+{
+	position:fixed;
+	left:5px;
+	bottom:20px;
+	margin-top:37px;
+	padding:5px;
+	border:1px solid #bbb;
+	width:270px;
+	text-align:center;
+	background:#add8e6;
+}
+.bookmark select
+{
+	margin-top:1px;
+	width:270px;
+}
+.openbookmark
+{
+	position:fixed;
+	font-size:10px;
+	left:0px;
+	bottom:0px;
+}
+.noticebt
+{
+	color:#fff;
+	position:fixed;
+	font-size:11px;
+	font-weight:bold;
+	text-align:center;
+	background-color:#add8e6;
+	border-radius:5px;
+	width:25px;
+	right:5px;
+	bottom:15px;
+}
+.hide
+{
+	display:none;
+}
+.notice_frame
+{
+	z-index:1;
+	position:fixed;
+	border:1px solid #add8e6;
+	right:5px;
+	bottom:30px;
+	height:300px;
+	width:300px;
+	background-color:#add8e6;
+	overflow-y:auto;
+}
+.notice_frame table
+{
+	width:280px;
+}

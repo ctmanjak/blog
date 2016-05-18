@@ -1,0 +1,38 @@
+a:link
+{
+	color:#000000;
+	text-decoration:none;
+}
+a:visited
+{
+	color:#000000;
+	text-decoration:none;
+}
+a:hover
+{
+	color:#000000;
+	text-decoration:none;
+}
+a:active
+{
+	color:#000000;
+	text-decoration:none;
+}
+.frame
+{
+	margin:auto;
+	width:1000px;
+}
+.setting
+{
+	position:relative;
+	text-align:center;
+}
+.setting li
+{
+	display:inline;
+}
+form
+{
+	display:inline;
+}

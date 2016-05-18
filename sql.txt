@@ -1,0 +1,67 @@
+CREATE TABLE `board` (
+  `post_id` tinyint(3) unsigned NOT NULL,
+  `user_id` tinyint(3) unsigned NOT NULL,
+  `board_id` tinyint(4) NOT NULL,
+  `post_name` char(50) DEFAULT NULL,
+  `post_content` mediumtext,
+  `post_date` datetime DEFAULT NULL,
+  `view_num` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `comment_num` smallint(5) unsigned NOT NULL DEFAULT '0',
+  KEY `post_id` (`post_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `board_name` (
+  `user_id` tinyint(4) NOT NULL,
+  `board_id` tinyint(4) NOT NULL,
+  `board_name` char(50) DEFAULT NULL,
+  `post_num` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `user_id` (`user_id`),
+  KEY `board_id` (`board_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `bookmark` (
+  `user_id` tinyint(4) NOT NULL,
+  `bookmark_id` tinyint(4) NOT NULL,
+  `bookmark_name` char(50) DEFAULT NULL,
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comment` (
+  `post_id` tinyint(3) unsigned NOT NULL,
+  `user_id` tinyint(3) unsigned NOT NULL,
+  `com_user_id` tinyint(3) unsigned NOT NULL,
+  `comment_id` tinyint(3) unsigned NOT NULL,
+  `com_content` mediumtext,
+  KEY `post_id` (`post_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `notice` (
+  `notice_id` tinyint(3) unsigned NOT NULL,
+  `get_user_id` tinyint(3) unsigned NOT NULL,
+  `send_user_id` tinyint(3) unsigned NOT NULL,
+  `notice_type` tinyint(3) unsigned NOT NULL,
+  `notice_data` char(20) NOT NULL DEFAULT '0',
+  `is_read` tinyint(1) NOT NULL DEFAULT '0',
+  KEY `get_user_id` (`get_user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `username` char(20) NOT NULL,
+  `pwd` char(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user_info` (
+  `id` tinyint(4) NOT NULL,
+  `nickname` char(20) DEFAULT NULL,
+  `blog_title` char(50) DEFAULT NULL,
+  `post_num` tinyint(4) NOT NULL DEFAULT '0',
+  `introduce` char(100) DEFAULT '',
+  `profilepic` char(50) NOT NULL DEFAULT 'defprofile.png',
+  `headpic` char(50) NOT NULL DEFAULT 'defhead.png',
+  `bgpic` char(50) NOT NULL DEFAULT 'defbg.png',
+  `money` int(11) DEFAULT '0',
+  `haschar` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
