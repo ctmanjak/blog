@@ -45,7 +45,8 @@
 			비밀번호 : <input type="password" id="user_pwd" name="user_pwd"><span> </span><br>
 			<input type="submit" value="가입하기">
 		</form>
-		<script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery-ui.min.js"></script>
 		<script>
 			var name_regex = new RegExp('[a-z0-9_-]{5,20}');
 			var pwd_regex = new RegExp('[^ \t\r\n\v\f]{5,20}');

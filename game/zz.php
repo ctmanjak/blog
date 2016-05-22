@@ -4,6 +4,12 @@
 	extract(array_merge($HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SESSION_VARS));
 	mysql_connect(HOST, "user", "");
 	mysql_select_db("blog");
+	
+		$file_location = file_get_contents("location.json");
+		$location = json_decode($file_location, true);
+		print_r($location);
+		print_r($file_location);
+		$senddata['location'] = $location[$location_id];
 ?>
 <html>
 	<head>
@@ -15,7 +21,7 @@
 		<script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script>
-			var exp_table = {};
+			/*var exp_table = {};
 			var points = 0;
 			var output = 0;
 			var minlevel = 2;
@@ -31,7 +37,7 @@
 			  }
 			  output = Math.floor(points / 4);
 			}
-			var exp = JSON.stringify(exp_table);
+			var exp = JSON.stringify(exp_table);*/
 		</script>
 	</body>
 </html>

@@ -71,7 +71,7 @@
 		$sql = mysql_query("select board_id from board where user_id=$owner_id and post_id=$post_id"); 
 		$data = mysql_fetch_array($sql);
 		$board_id = $data[board_id];?>
-		<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery.min.js"></script>
 		<script>
 			$(document).ready(function()
 			{
@@ -87,22 +87,22 @@
 		<title><?=$owner_title?></title>
 		<meta charset="UTF-8">
 		<link type="text/css" href="style.css" rel="stylesheet">
-		<script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery-ui.min.js"></script>
 		<script src="../logout.js"></script>
 	</head>
 	<body style="background-image:url('<?=$bgpic?>')">
-		<div class="frame">
-			<div class="header">
-			
-				<div class="headerlink">
-					<ul><a href="../"><li>메인</li></a>
-					<?if ($logged == 1) 
-					{?>
-						 l <a href="../<?=$log_name?>"><li>내 블로그</li></a> l <a href="#" onclick="logout(event)"><li>로그아웃</li></a>
-					<?}?>
-					</ul>
-				</div>
+		<div class="header">
+			<div class="headerlink">
+				<ul><a href="../"><li>메인</li></a>
+				<?if ($logged == 1) 
+				{?>
+					l <a href="../store.php"><li>상점</li></a> l <a href="../game/"><li>게임</li></a> l <a href="../<?=$log_name?>"><li>내 블로그</li></a> l <a href="#" onclick="logout(event)"><li>로그아웃</li></a>
+				<?}?>
+				</ul>
 			</div>
+		</div>
+		<div class="frame">
 			<div class="headline">
 				<img src="<?=$headpic?>">
 				<a href="./"><span><?=$owner_title?></span></a>

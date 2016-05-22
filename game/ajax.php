@@ -1,5 +1,6 @@
 <?
 	include("../config.cfg");
+	session_start();
 	extract(array_merge($HTTP_GET_VARS, $HTTP_POST_VARS));
 	mysql_connect(HOST, "user", "");
 	mysql_select_db("blog");
@@ -15,8 +16,8 @@
 		$lvlup_exp = json_decode($exp_table, true);
 		if($data[haschar] == 1)
 		{
-			$file_player = file_get_contents("../$log_name/player.json");
-			$player = json_decode($file_player, true);
+			$json_player = file_get_contents("../$log_name/player.json");
+			$player = json_decode($json_player, true);
 			$senddata['player'] = $player;
 		}
 		$senddata['haschar'] = $data[haschar];
@@ -28,13 +29,30 @@
 		$player = json_encode($save_data);
 		file_put_contents("../".$log_name."/player.json", $player, FILE_USE_INCLUDE_PATH);
 		$senddata['result'] = true;
-		$senddata['player'] = json_decode($player);
 	}
 	else if(!empty($load) && $load == 1)
 	{
-		$file_player = file_get_contents("../$log_name/player.json");
-		$player = json_decode($file_player);
+		$json_player = file_get_contents("../$log_name/player.json");
+		$player = json_decode($json_player);
+		$senddata['result'] = true;
 		$senddata['player'] = $player;
+	}
+	else if($get_location == 1)
+	{
+		$json_location = file_get_contents("location.json");
+		$location = json_decode($json_location);
+		$senddata['result'] = true;
+		$senddata['location'] = $location[$location_id];
+	}
+	else if($get_npc == 1)
+	{
+		$json_npc = file_get_contents("npc.json");
+		$npc = json_decode($json_npc);
+		foreach($npc_id as $id)
+		{
+			$senddata['npc'][] = $npc[$id];
+		}
+		$senddata['result'] = true;
 	}
 	echo json_encode($senddata);
 ?>

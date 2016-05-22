@@ -166,7 +166,8 @@
 				}
 			}?>
 		</div>
-		<script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery-ui.min.js"></script>
 		<script>
 			$('#<?=$category?>').addClass('active');
 		</script>

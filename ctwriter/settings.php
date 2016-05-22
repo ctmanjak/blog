@@ -49,7 +49,7 @@
 		</script>
 		<?
 	}
-	else if($editblog==2)
+	/*else if($editblog==2)
 	{
 		if($modhp == 1)
 		{
@@ -116,7 +116,7 @@
 			history.go(-2);
 		</script>
 		<?
-	}
+	}*/
 	else if($editgroup==2)
 	{
 		if(!empty($board_add) && $addgroup == 1)
@@ -196,28 +196,26 @@
 		<script src="../logout.js"></script>
 	</head>
 	<body>
-	<div class="frame">
-		<div class="header">
+	<div class="header">
 			<div class="headerlink">
-				<ul><a href="../"><li>메인</li></a> l <a href="../<?=$data[username]?>"><li>내 블로그</li></a> l <a href="#" onclick="logout(event)"><li>로그아웃</li></a></ul>
+				<ul><a href="../"><li>메인</li></a> l <a href="../store.php"><li>상점</li></a> l <a href="../game/"><li>게임</li></a> l <a href="../<?=$data[username]?>"><li>내 블로그</li></a> l <a href="#" onclick="logout(event)"><li>로그아웃</li></a></ul>
 			</div>
 		</div>
+	<div class="frame">
 		<div class="setting_main">
 		<?if($editprofile==1)
 		{?>
 			<div class="setting_editnotice">사진을 변경하시려면 체크박스에 체크를 해주세요.<br>체크후 아무 파일도 업로드하지 않으면 기본 사진으로 변경됩니다.<br></div>
 			<center><div class="setting_notice up"></div></center>
-			<form method="post" action="settings.php" enctype="multipart/form-data">
-				<input type="hidden" name="MAX_FILE_SIZE" value="1048576">
+			<form method="post" action="settings.php">
 				<input type="hidden" name="editprofile" value="2">
 				블로그 이름 : <input type="text" autocomplete="off" name="blog_title" value="<?=$data[blog_title]?>"><br>
 				닉네임 : <input type="text" autocomplete="off" name="nickname" value="<?=$data[nickname]?>"><br>
-				소개말 : <input type="text" autocomplete="off" name="introduce" value="<?=$data[introduce]?>"><br>
-				프로필 사진 : <img src="<?=$data[profilepic]?>" style="display:block;"><input type="file" name="profile" accept="image/*"><input type="checkbox" name="modpp" value="1"><br><br>
+				소개말 : <input type="text" autocomplete="off" name="introduce" value="<?=$data[introduce]?>"><br><br>
 				<input type="submit" value="수정">
 			</form>
 		<?}
-		else if($editblog==1)
+		/*else if($editblog==1)
 		{?>
 			<div class="setting_editnotice">사진을 변경하시려면 체크박스에 체크를 해주세요.<br>체크후 아무 파일도 업로드하지 않으면 기본 사진으로 변경됩니다.<br></div>
 			<center><div class="setting_notice up"></div></center>
@@ -228,7 +226,7 @@
 				블로그 배경 사진 : <img src="<?=$data[bgpic]?>" style="display:block;max-width:300px"><input type="file" name="bg" accept="image/*"><input type="checkbox" name="modbp" value="1"><br><br>
 				<input type="submit" value="수정">
 			</form>
-		<?}
+		<?}*/
 		else if($editgroup==1)
 		{?>
 			아무 것도 입력하지 않으면 게시판을 삭제합니다.<br>게시판에 있는 모든 글이 삭제되니 주의하세요.<br><br>
@@ -273,7 +271,7 @@
 		{?>
 			<div class="setting">
 				<ul>
-					<a href="settings.php?editblog=1"><li>블로그 관리</li></a><br>
+					<a href="inventory.php"><li>소유하고 있는 스킨</li></a><br>
 					<a href="settings.php?editprofile=1"><li>프로필 편집</li></a><br>
 					<a href="settings.php?editgroup=1"><li>게시판 그룹 관리</li></a><br>
 					<a href="settings.php?editbookmark=1"><li>즐겨찾기 관리</li></a><br>
@@ -282,8 +280,13 @@
 		<?}?>
 		</div>
 	</div>
-	<script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+	<script src="//<?=HOST?>/js/jquery.min.js"></script>
+	<script src="//<?=HOST?>/js/jquery-ui.min.js"></script>
 	<script>
+		$("#inventory").click(function()
+		{
+			location.href="inventory.php";
+		});
 		$('.setting_notice').click(function()
 		{
 			$('.setting_editnotice').slideToggle({

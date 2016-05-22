@@ -16,7 +16,7 @@
 				$logged=1;
 				$log_id=$data[id];
 				$_SESSION['log_name']=$data[username];
-				print "<script>history.go(-2)</script>";
+				print "<script>location.href='/'</script>";
 			}
 			else print "<script>alert('비밀번호가 틀립니다.');</script>";
 		}

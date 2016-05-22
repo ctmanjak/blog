@@ -67,8 +67,8 @@
 			가격 : <input type="number" name="price" value="100" id="item_price"><br>
 			<input type="submit">
 		</form>
-		<script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script src="//<?=HOST?>/js/jquery.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery-ui.min.js"></script>
 		<script>
 			var regex = new RegExp("[^ \t\r\n\v\f]{5,20}");
 			$('#additem').submit(function()

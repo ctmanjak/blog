@@ -71,7 +71,7 @@
 		$sql = mysql_query("select board_id from board where user_id=$owner_id and post_id=$post_id"); 
 		$data = mysql_fetch_array($sql);
 		$board_id = $data[board_id];?>
-		<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery.min.js"></script>
 		<script>
 			$(document).ready(function()
 			{
@@ -87,7 +87,8 @@
 		<title><?=$owner_title?></title>
 		<meta charset="UTF-8">
 		<link type="text/css" href="style.css" rel="stylesheet">
-		<script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery.min.js"></script>
+		<script src="//<?=HOST?>/js/jquery-ui.min.js"></script>
 		<script src="../logout.js"></script>
 	</head>
 	<body style="background-image:url('<?=$bgpic?>')">

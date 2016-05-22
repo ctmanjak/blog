@@ -222,6 +222,7 @@ a:active
 .store_frame
 {
 	position:relative;
+	top:50px;
 	min-width:800px;
 	max-width:1600px;
 }
