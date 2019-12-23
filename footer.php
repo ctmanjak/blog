@@ -1,6 +1,6 @@
 <?
 	session_start();
-	include $_SERVER["DOCUMENT_ROOT"]."/2016Web/1524023/config.cfg";
+	include $_SERVER["DOCUMENT_ROOT"]."/blog/config.cfg";
 	extract(array_merge($HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SESSION_VARS));
 	session_register('bookmarkbar');
 	mysql_connect(HOST, "user", "");
@@ -36,7 +36,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<link type="text/css" href="http://<?=HOST?>/2016Web/1524023/footer.css" rel="stylesheet">
+		<link type="text/css" href="http://<?=HOST?>/blog/footer.css" rel="stylesheet">
 	</head>
 	<body>
 		<?if($logged == 1)
@@ -57,7 +57,7 @@
 						{
 							foreach($bookmark as $url => $name)
 							{
-								print "<option value='http://".HOST."/2016Web/1524023/blog/?owner=$url'>$name";
+								print "<option value='http://".HOST."/blog/blog/?owner=$url'>$name";
 							}
 						}?>
 					</select>
@@ -66,8 +66,8 @@
 					<a href="#" onclick="openbookmark(event)">즐겨찾기</a>
 				</div>
 		<?}?>
-		<script src="//<?=HOST?>/2016Web/1524023/js/jquery.min.js"></script>
-		<script src="//<?=HOST?>/2016Web/1524023/js/jquery-ui.min.js"></script>
+		<script src="//<?=HOST?>/blog/js/jquery.min.js"></script>
+		<script src="//<?=HOST?>/blog/js/jquery-ui.min.js"></script>
 		<script>
 			$(document).ready(function()
 			{
@@ -115,12 +115,12 @@
 							$('.notice_frame').html("<table></table>");
 							for(var i = 0; i < Object.keys(result).length-1;i++)
 							{
-								if(result[i]['notice_type'] == <?=NT_ADDBM?>) $('.notice_frame > table').append("<tr><td><a href='http://<?=HOST?>/2016Web/1524023/blog/?owner="+result[i]['send_user']+"'>"+result[i]['send_user_nick']+"</a>님이 <?=$log_name?>님을 즐겨찾기에 등록했습니다.<br></td></tr>");
-								else if(result[i]['notice_type'] == <?=NT_NEWPOST?>) $('.notice_frame > table').append("<tr><td><a href='http://<?=HOST?>/2016Web/1524023/blog/?owner="+result[i]['send_user']+"&post_id="+result[i]['notice_data']+"'>"+result[i]['send_user_nick']+"님이 새로운 글을 등록했습니다.<br></a></td></tr>");
+								if(result[i]['notice_type'] == <?=NT_ADDBM?>) $('.notice_frame > table').append("<tr><td><a href='http://<?=HOST?>/blog/blog/?owner="+result[i]['send_user']+"'>"+result[i]['send_user_nick']+"</a>님이 <?=$log_name?>님을 즐겨찾기에 등록했습니다.<br></td></tr>");
+								else if(result[i]['notice_type'] == <?=NT_NEWPOST?>) $('.notice_frame > table').append("<tr><td><a href='http://<?=HOST?>/blog/blog/?owner="+result[i]['send_user']+"&post_id="+result[i]['notice_data']+"'>"+result[i]['send_user_nick']+"님이 새로운 글을 등록했습니다.<br></a></td></tr>");
 								else if(result[i]['notice_type'] == <?=NT_NEWCOMMENT?>)
 								{
 									$data = result[i]['notice_data'].split(",");
-									$('.notice_frame > table').append("<tr><td><a href='http://<?=HOST?>/2016Web/1524023/blog/?owner=<?=$log_name?>&post_id="+$data[0]+"'><?=$log_name?>님의 글에 새로운 덧글이 등록되었습니다.<br></a></td></tr>");
+									$('.notice_frame > table').append("<tr><td><a href='http://<?=HOST?>/blog/blog/?owner=<?=$log_name?>&post_id="+$data[0]+"'><?=$log_name?>님의 글에 새로운 덧글이 등록되었습니다.<br></a></td></tr>");
 								}
 							}
 							//$('.noticebt').load("index.php .noticebt>*");
@@ -144,7 +144,7 @@
 			var closebookmark = function(event)
 			{
 				$.ajax({
-					url:"http://<?=HOST?>/2016Web/1524023/checkbookmark.php",
+					url:"http://<?=HOST?>/blog/checkbookmark.php",
 					dataType:"json",
 					type:"post",
 					data:{checkbookmark:0}
@@ -156,7 +156,7 @@
 			var openbookmark = function(event)
 			{
 				$.ajax({
-					url:"http://<?=HOST?>/2016Web/1524023/checkbookmark.php",
+					url:"http://<?=HOST?>/blog/checkbookmark.php",
 					dataType:"json",
 					type:"post",
 					data:{checkbookmark:1}

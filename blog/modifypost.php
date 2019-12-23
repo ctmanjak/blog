@@ -81,8 +81,8 @@
 	<?}?>
 	<div class="board_bg" style="z-index:-1;top:0;position:absolute;width:100%;height:100%;"></div>
 	</div>
-	<script src="//<?=HOST?>/2016Web/1524023/js/jquery.min.js"></script>
-	<script src="//<?=HOST?>/2016Web/1524023/js/jquery-ui.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery-ui.min.js"></script>
 	<script>
 		$("#modifypost").submit(function(event)
 		{
@@ -112,7 +112,7 @@
 					data:{uploadimage:1,image:reader.result.split(",")[1],image_name:image_name},
 					success:function(result)
 					{
-						$("#image_list").append("<li style='height:50px;list-style-type:none;'><img src='http://<?=HOST?>/2016Web/1524023/blog/image/"+result['image_name']+"' style='float:left;height:100%;width:auto;'><div align='right' id='setsize' style='position:absolute;right:0;z-index:1;'><input type='checkbox' id='link_size' checked><input type='number' id='width' placeholder='넓이' value='"+result['width']+"'><br><input type='number' id='height' placeholder='높이' value='"+result['height']+"'></div><div style='z-index:0;position:relative;top:50%;transform:translate(0,-50%)'> &nbsp"+result['image_name']+"</div></li>");
+						$("#image_list").append("<li style='height:50px;list-style-type:none;'><img src='./image/"+result['image_name']+"' style='float:left;height:100%;width:auto;'><div align='right' id='setsize' style='position:absolute;right:0;z-index:1;'><input type='checkbox' id='link_size' checked><input type='number' id='width' placeholder='넓이' value='"+result['width']+"'><br><input type='number' id='height' placeholder='높이' value='"+result['height']+"'></div><div style='z-index:0;position:relative;top:50%;transform:translate(0,-50%)'> &nbsp"+result['image_name']+"</div></li>");
 						$("#image").val("");
 					}
 				});

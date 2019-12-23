@@ -212,7 +212,7 @@
 				else
 				{?>
 					<ul>
-						<a href="http://<?=HOST?>/2016Web/1524023/blog/inventory.php"><li>소유하고 있는 아이템</li></a>
+						<a href="./blog/inventory.php"><li>소유하고 있는 아이템</li></a>
 						<a href="settings.php?editprofile=1"><li>프로필 편집</li></a>
 						<a href="settings.php?editgroup=1"><li>게시판 그룹 관리</li></a>
 						<a href="settings.php?editbookmark=1"><li>즐겨찾기 관리</li></a>

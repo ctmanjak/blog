@@ -74,8 +74,8 @@
 			가격 : <input type="number" name="price" value="100" id="item_price"><span></span><br>
 			<input type="submit">
 		</form>
-		<script src="//<?=HOST?>/2016Web/1524023/js/jquery.min.js"></script>
-		<script src="//<?=HOST?>/2016Web/1524023/js/jquery-ui.min.js"></script>
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/jquery-ui.min.js"></script>
 		<script>
 			$("#category").val("<?=$_GET['category']?>");
 			$("#item_price").blur(function()

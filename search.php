@@ -19,7 +19,7 @@
 	</head>
 	<body>
 		<div class="search_header">
-			<a href="http://<?=HOST?>/2016Web/1524023/"><div class="headerlogo"></div></a>
+			<a href="./"><div class="headerlogo"></div></a>
 			<div class="hsearchbar">
 				<form method="get" action="search.php">
 					<input type="hidden" name="category" value="<?=ALL?>">
@@ -80,7 +80,7 @@
 								$sql = mysql_query("select * from user, user_info, board where user.id=user_info.id and user_info.id=board.user_id and board.user_id='$user_id' and post_id=$post_id");
 								$data = mysql_fetch_array($sql);
 								$data[post_content] = preg_replace("/<[^?]?[^>]*[^?\\<]*[^\\?]>/", " ", $data[post_content]);?>
-								<a href="http://<?=HOST?>/2016Web/1524023/blog/?owner=<?=$data[username]?>&post_id=<?=$data[post_id]?>"><?=$data[post_name]." - ".$data[blog_title]?></a><br>
+								<a href="./blog/?owner=<?=$data[username]?>&post_id=<?=$data[post_id]?>"><?=$data[post_name]." - ".$data[blog_title]?></a><br>
 								<div class="searchcontent"><?
 									$data[post_content] = preg_replace("/<[^?]?[^>]*[^?\\<]*[^\\?]>/", " ", $data[post_content]);
 									foreach($search_array as $word)
@@ -159,7 +159,7 @@
 						{
 							$sql = mysql_query("select * from user, user_info where user.id=user_info.id and user_info.id='$user_id'");
 							$data = mysql_fetch_array($sql);?>
-							<a href="http://<?=HOST?>/2016Web/1524023/blog/?owner=<?=$data[username]?>"><?=$data[nickname]." - ".$data[blog_title]?></a><br><br>
+							<a href="./blog/?owner=<?=$data[username]?>"><?=$data[nickname]." - ".$data[blog_title]?></a><br><br>
 						<?}
 						if($category == ALL && $post_num > 5) print "<div style='font-weight:bold;color:blue' align='right'><a href='search.php?category=".USER."&search=$search'>더 보기</a></div>";
 					}

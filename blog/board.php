@@ -230,8 +230,8 @@
 <?}?>
 <div class="board_bg" style="z-index:-1;top:0;position:absolute;width:100%;height:100%;"></div>
 </div>
-		<script src="//<?=HOST?>/2016Web/1524023/js/jquery.min.js"></script>
-		<script src="//<?=HOST?>/2016Web/1524023/js/jquery-ui.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery-ui.min.js"></script>
 		<script>
 			$('.comment_main').hover(function(event)
 			{
