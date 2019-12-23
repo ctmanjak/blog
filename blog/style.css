@@ -1,0 +1,298 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+a:link
+{
+	color:#000000;
+	text-decoration:none;
+}
+a:visited
+{
+	color:#000000;
+	text-decoration:none;
+}
+a:hover
+{
+	color:#000000;
+	text-decoration:none;
+}
+a:active
+{
+	color:#000000;
+	text-decoration:none;
+}
+body
+{
+	margin:0;
+	padding:0;
+	font-family:'Nanum Gothic';
+}
+.frame
+{
+	position:relative;
+	display:inline-block;
+	margin-left:285px;
+	margin-right:285px;
+	margin-top:40px;
+	width:1000px;
+}
+.hide
+{
+	display:none;
+}
+.headline
+{
+	position:relative;
+	width:995px;
+	overflow:hidden;
+	min-height:100px;
+	max-height:300px;
+}
+.headline span
+{
+	position:absolute;
+	bottom:20px;
+	left:30px;
+}
+.headline img
+{
+	position:relative;
+	max-width:auto;
+}
+.main
+{
+	position:relative;
+	width:100%;
+	min-height:570px;
+	margin-bottom:50px;
+	top:5px;
+}
+.my_info
+{
+	position:relative;
+	border:1px solid #bbb;
+	top:-1px;
+	left:-1px;
+	width:200px;
+}
+.my_picture
+{
+	position:relative;
+	width:200px;
+	height:200px;
+	overflow:hidden;
+}
+.my_picture img
+{
+	position:relative;
+	max-width:auto;
+	height:100%;
+	left:50%;
+	transform:translate(-50%,0);
+}
+.my_profile
+{
+	font-size:0.9em;
+	position:relative;
+	word-break:break-all;
+	padding:5px;
+	line-height:20px;
+}
+.introduce
+{
+	font-size:0.9em;
+	position:relative;
+	word-break:break-all;
+	padding:5px;
+	line-height:17px;
+}
+.my_option
+{
+	font-size:13px;
+	text-align:right;
+}
+.board_name
+{
+	position:relative;
+	padding-top:-18px;
+	width:201px;
+}
+.board_name li
+{
+	left:-10px;
+	font-size:0.9em;
+	word-break:break-all;
+	position:relative;
+	list-style-type:none;
+}
+.board_main
+{
+	position:relative;
+	width:790px;
+	min-height:500;
+	left:5px;
+}
+.board
+{
+	position:absolute;
+	border:0px;
+	right:0px;
+	top:0px;
+	width:800px;
+	min-height:600px;
+}
+.board_table
+{
+	border-collapse:collapse;
+	position:relative;
+	width:790px;
+}
+.board_line
+{
+	padding:0px;
+	height:1px;
+	background-color:#636363;
+}
+.post_name
+{
+}
+.post_content
+{
+	word-break:break-all;
+	padding-top:40px;
+	padding-bottom:60px;
+}
+.setting
+{
+	position:relative;
+	top:50px;
+	text-align:center;
+}
+.setting li
+{
+	display:inline;
+}
+form
+{
+	display:inline;
+}
+th
+{
+	font-size:0.8em;
+}
+th, td
+{
+	padding:5px;
+}
+td
+{
+	font-size:0.9em;
+}
+.backgroundsearchbar
+{
+	left:5px;
+	top:5px;
+	display:inline;
+	position:relative;
+	width:200px;
+	height:25px;
+}
+.bsearchbar input[type=text]
+{
+	display:inline;
+	position:absolute;
+	width:200px;
+	height:25px;
+}
+.bsearchbar input[type=submit]
+{
+	display:inline;
+	position:absolute;
+	left:200px;
+	height:25px;
+}
+.board_num
+{
+	display:inline;
+}
+.comment
+{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.comment_main
+{
+	padding-bottom:5px;
+	border-bottom:1px dotted #aeaeae;
+}
+.comment_header
+{
+	padding-left:10px;
+	margin-top:5px;
+}
+.comment_header ul
+{
+	display:inline;
+}
+.comment_header li
+{
+	display:inline;
+	list-style-type:none;
+}
+.comment_content
+{
+	margin-left:10px;
+}
+.comment_text
+{
+	padding-bottom:5px;
+	border-bottom:1px solid #636363;
+}
+.comment_text textarea
+{
+	width:100%;
+	height:200px;
+}
+.comment_option
+{
+	display:inline;
+	visibility:hidden;
+	font-size:0.75em;
+}
+.comment_date
+{
+	position:absolute;
+	right:0;
+	display:inline-block;
+	font-size:0.75em;
+}
+.selected
+{
+	font-weight:bold;
+}
+.setting_main
+{
+	position:relative;
+}
+.setting_editnotice
+{
+	border:1px solid;
+}
+.setting_notice
+{
+	position:relative;
+}
+.down
+{
+	width:0px;
+	height:0px;
+	border-left:7px solid transparent;
+	border-right:7px solid transparent;
+	border-top:10px solid #000000;
+}
+.up
+{
+	width:0px;
+	height:0px;
+	border-left:7px solid transparent;
+	border-right:7px solid transparent;
+	border-bottom:10px solid #000000;
+}

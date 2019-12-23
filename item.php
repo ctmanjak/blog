@@ -26,12 +26,13 @@
 		$senddata[result] = true;
 		echo json_encode($senddata);
 	}
-	else
+	else if($purchase_item == 1)
 	{
 		$senddata['hasitem'] = 0;
-		$json_items = file_get_contents("./".$log_name."/item.json");
-		$items = json_decode($json_items, true);
-		foreach($items[$category] as $id)
+		$sql = mysql_query("select hasitem from user_info where id=$log_id");
+		$data = mysql_fetch_array($sql);
+		$items = explode(",", $data['hasitem']);
+		foreach($items as $id)
 		{
 			if($id == $purchase_id)
 			{
@@ -41,5 +42,14 @@
 		}
 		$senddata[result] = true;
 		echo json_encode($senddata);
+	}
+	else if($delete_item == 1)
+	{
+		$sql = mysql_query("select item_image from item where item_id=$item_id");
+		$data = mysql_fetch_array($sql);
+		$filename = $data['item_image'];
+		mysql_query("delete from item where item_id=$item_id");
+		unlink("item/$category/$filename");
+		echo json_encode(array('result'=>true));
 	}
 ?>

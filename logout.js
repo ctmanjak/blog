@@ -2,12 +2,12 @@ var logout = function(event)
 {
 	event.preventDefault();
 	$.ajax({
-		url:"/logout.php",
+		url:"http://<?=HOST?>/2016Web/logout.php",
 		dataType:"json",
 		type:"post",
 		success:function(result)
 		{
-			location.href=location.href;
+			location.href="../";
 		}
 	});
 };

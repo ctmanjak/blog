@@ -1,7 +1,7 @@
 <?
 	session_start();
 	include("config.cfg");
-	extract(array_merge($HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SESSION_VARS));
+	extract(array_merge($HTTP_POST_VARS, $HTTP_SESSION_VARS));
 	mysql_connect(HOST, "user", "");
 	mysql_select_db("blog");
 	
@@ -36,15 +36,22 @@
 			}
 			$filename = mysql_escape_string($filename);
 			$filename = iconv('euckr', 'utf-8', $filename);
-			$sql = mysql_query("select item_id from item where item_category='$category' order by item_id desc limit 1");
-			$data = mysql_fetch_array($sql);
-			if(!empty($data)) $item_id = $data[item_id] + 1;
-			else $item_id = 1;
-			mysql_query("insert into item(item_id, item_category, item_image, item_name, item_desc, item_price, user_id) values($item_id, '$category', '$filename', '$name', '$desc', $price, $log_id)");
-			print "<script>history.go(-1)</script>";
+			mysql_query("insert into item(item_category, item_image, item_name, item_desc, item_price, user_id) values('$category', '$filename', '$name', '$desc', $price, $log_id)");
+			mysql_query("update user_info a,(select item_price, item_id from item order by item_id desc limit 1) b, (select concat(a.hasitem, ',',b.item_id) item from user_info a, (select item_id from item order by item_id desc limit 1) b where a.id=$log_id) c set a.point=a.point-b.item_price, a.hasitem=c.item where a.id=$log_id");
+			print "<script>window.close()</script>";
 		}
 		else print "<script>alert('이미지 파일만 업로드할 수 있습니다.');history.go(-1)</script>";
-		
+	}
+	else if($chk_price == 1)
+	{
+		$sql = mysql_query("select point from user_info where id=$log_id");
+		$data = mysql_fetch_array($sql);
+		$point = $price-$data[point];
+		if($data[point] >= $price) $senddata = array("result" => true);
+		else $senddata = array("result" => false, "need" => $point);
+			
+		echo json_encode($senddata);
+		exit;
 	}
 ?>
 <html>
@@ -57,20 +64,49 @@
 			<input type="hidden" name="MAX_FILE_SIZE" value="1048576">
 			<input type="hidden" name="additem" value="1">
 			<input type="file" name="image" accept="image/*"><br>
-			<select name="category">
+			<select name="category" id="category">
 				<option value="title">타이틀
 				<option value="bg">배경
 				<option value="profile">프로필
 			</select><br>
-			이름 : <input type="name" name="name" id="item_name"><span></span><br>
+			이름 : <input type="name" name="name" id="item_name"><br>
 			설명 : <input type="name" name="desc" id="item_desc"><br>
-			가격 : <input type="number" name="price" value="100" id="item_price"><br>
+			가격 : <input type="number" name="price" value="100" id="item_price"><span></span><br>
 			<input type="submit">
 		</form>
-		<script src="//<?=HOST?>/js/jquery.min.js"></script>
-		<script src="//<?=HOST?>/js/jquery-ui.min.js"></script>
+		<script src="//<?=HOST?>/2016Web/1524023/js/jquery.min.js"></script>
+		<script src="//<?=HOST?>/2016Web/1524023/js/jquery-ui.min.js"></script>
 		<script>
-			var regex = new RegExp("[^ \t\r\n\v\f]{5,20}");
+			$("#category").val("<?=$_GET['category']?>");
+			$("#item_price").blur(function()
+			{
+				$.ajax({
+						url:"additem.php",
+						dataType:"json",
+						type:"post",
+						context:this,
+						data:{chk_price:1,price:$(this).val()},
+						success:function(result)
+						{
+							if(result['result'] == true)
+							{
+								$(this).next().html("");
+								$(this).addClass("checked");
+							}
+							else 
+							{
+								$(this).next().html("<span style='color:#f00;font-weight:bold'> "+result['need']+"포인트가 더 필요합니다.</span>");
+								$(this).removeClass("checked");
+							}
+						}
+				});
+			});
+			$("#item_price").blur();
+			$('#additem').submit(function()
+			{
+				if(!($('#item_price').hasClass("checked"))) event.preventDefault();
+			});
+			/*var regex = new RegExp("[^ \t\r\n\v\f]{5,20}");
 			$('#additem').submit(function()
 			{
 				if(!($('#item_name').hasClass("checked"))) event.preventDefault();
@@ -104,7 +140,7 @@
 							}
 						}
 					});
-			});
+			});*/
 		</script>
 	</body>
 </html>

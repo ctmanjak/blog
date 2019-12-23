@@ -4,34 +4,23 @@
 	extract(array_merge($HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SESSION_VARS));
 	mysql_connect(HOST, "user", "");
 	mysql_select_db("blog");
-	
-	
+	$sql = mysql_query("select point from user_info where id=$log_id");
+	$data = mysql_fetch_array($sql);
+	include("header.php");
 ?>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<link type="text/css" href="style.css" rel="stylesheet">
-		<script src="logout.js"></script>
+		
 	</head>
 	
 	<body>
-	<div class="header">
-			<div class="headerlink">
-				<?
-				if($logged == 1)
-				{?>
-					<ul><a href="/"><li>메인</li></a> l <a href="game/"><li>게임</li></a> l <a href="<?=$log_name?>/"><li>내 블로그</li></a> l <a href="settings.php"><li>설정</li> l <a href="#" onclick="logout(event)"><li>로그아웃</li></a></ul>
-				<?}
-				else
-				{?>
-					<ul><a href="login.php"><li>로그인</li></a> l <a href="register.php"><li>회원가입</li></a></ul>
-				<?}?>
-			</div>
-		</div>
 		<div class="store_frame">
 			<div class="store_category">
+				<a href="additem.php" id="additem" style="position:absolute;right:130px;padding:5px;" target="_blank">아이템 올리기</a> <div style="position:absolute;right:5px;padding:5px;" id="point">내 포인트 : <?=$data['point']?></div>
 				<ul>
-					<a href="#" id="title"><li>타이틀</li></a><a href="#" id="bg"><li>배경</li></a><a href="#" id="profile"><li>프로필사진</li></a>
+					<li id="title">타이틀</li><li id="bg">배경</li><li id="profile">프로필사진</li>
 				</ul>
 			</div>
 			<div class="store_item">
@@ -51,6 +40,7 @@
 					<?if($logged == 1)
 					{?>
 						<div class="purchase_button">
+							<input type="button" id="delete" class="hide" value="삭제">
 							<input type="button" id="purchase" value="구입">
 						</div>
 					<?}?>
@@ -63,26 +53,41 @@
 			var category;
 			$(document).ready(function()
 			{
-				$.ajax({
-					url:"item.php",
-					dataType:"json",
-					type:"post",
-					data:{sel_category:1, category:"title"},
-					success:function(result)
-					{
-						category = "title";
-						if(result['result'] == true)
-						{
-							for(var i=0;i < result['item_num'];i++)
-								$(".store_item").append("<div class='item' id='"+result[i]['item_id']+"'><div class='item_image'><img id='image' src='./item/"+result[i]['item_category']+"/"+result[i]['item_image']+"'></div><div class='item_info'><div class='item_name' title='"+result[i]['item_name']+"'>"+result[i]['item_name']+"</div><div class='item_desc hide' title='"+result[i]['item_desc']+"'>"+result[i]['item_desc']+"</div><div class='item_price'>point : "+result[i]['item_price']+"</div></div></div>");
-						}
-					}
-				});
+				$('.store_category li#title').click();
 			});
-			$('.store_category a').click(function(event)
+			$("#delete").click(function()
+			{
+				if(confirm("정말 삭제하시겠습니까?") == true)
+				{
+					$.ajax({
+						url:"item.php",
+						dataType:"json",
+						type:"post",
+						data:{delete_item:1,item_id:purchase_id,category:category},
+						success:function(result)
+						{
+							location.href=location.href;
+						}
+					});
+				}
+			});
+			$('.store_category li').on({mouseenter:function(event)
+			{
+				$(this).addClass("hover");
+			},
+			mouseleave:function(event)
+			{
+				if(!$(this).hasClass("selected")) $(this).removeClass("hover");
+			}
+			});
+			$('.store_category li').click(function(event)
 			{
 				event.preventDefault();
-				console.log("category");
+				category = $(this).attr("id");
+				$('.store_category li').removeClass("hover");
+				$('.store_category li').removeClass("selected");
+				$(this).addClass("selected");
+				$("#additem").attr("href", "additem.php?category="+category);
 				$.ajax({
 					url:"item.php",
 					dataType:"json",
@@ -91,7 +96,6 @@
 					data:{sel_category:1, category:$(this).attr("id")},
 					success:function(result)
 					{
-						category = $(this).attr("id");
 						if(result['result'] == true)
 						{
 							$(".store_item").html("");
@@ -104,6 +108,7 @@
 			var purchase_id, purchase_price;
 			$('body').on('click', '.item', function(event)
 			{
+				if('<?=$log_name?>' == 'ctwriter') $("#delete").removeClass("hide");
 				$(".purchase_frame").removeClass("hide");
 				purchase_id = $(this).attr("id");
 				$(".purchase_image > img").attr('src', $("#image", this).attr('src'));
@@ -114,7 +119,7 @@
 					url:"item.php",
 					dataType:"json",
 					type:"post",
-					data:{purchase_id:purchase_id, category:category},
+					data:{purchase_id:purchase_id, category:category, purchase_item:1},
 					success:function(result)
 					{
 						if(result['result'] == true)
@@ -152,6 +157,7 @@
 							else
 							{
 								alert("구입이 완료되었습니다.");
+								$("#point").text("내 포인트 : "+result['point']);
 							}
 						}
 						$(".purchase_frame").addClass("hide");

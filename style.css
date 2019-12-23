@@ -1,3 +1,85 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@media screen and (max-device-width:480px)
+{
+	body
+	{
+		font-size:32px;
+	}
+	.logo
+	{
+		display:inline-block;
+		background-size:100% auto;
+		background-image:url("logo.png");
+		background-repeat:no-repeat;
+		position:relative;
+		width:100%;
+		height:390px;
+	}
+	.searchbar
+	{
+		display:inline;
+		position:relative;
+		width:500px;
+		height:70px;
+	}
+	.searchbar input[type=text]
+	{
+		margin:0px;
+		padding:0px;
+		display:inline;
+		position:relative;
+		width:80%;
+		height:70px;
+	}
+	.searchbar input[type=submit]
+	{
+		top:8px;
+		display:inline;
+		position:relative;
+		height:70px;
+		font-size:1em;
+	}
+}
+@media screen and (min-device-width:480px)
+{
+	body
+	{
+		font-size:16px;
+	}
+	.logo
+	{
+		display:inline-block;
+		background-size:100% auto;
+		background-image:url("logo.png");
+		background-repeat:no-repeat;
+		position:relative;
+		width:550px;
+		height:215px;
+	}
+	.searchbar
+	{
+		display:inline;
+		position:relative;
+		width:500px;
+		height:38px;
+	}
+	.searchbar input[type=text]
+	{
+		margin:0px;
+		padding:0px;
+		display:inline;
+		position:relative;
+		width:40%;
+		height:38px;
+	}
+	.searchbar input[type=submit]
+	{
+		top:2px;
+		display:inline;
+		position:relative;
+		height:38px;
+	}
+}
 a:link
 {
 	color:#000000;
@@ -18,84 +100,46 @@ a:active
 	color:#000000;
 	text-decoration:none;
 }
+body
+{
+	margin:0;
+	padding:0;
+	font-family:'Nanum Gothic';
+}
 /* all */
 .hide
 {
 	display:none;
 }
-.header
-{
-	position:relative;
-	min-width:800px;
-}
-.header form
-{
-	display:inline;
-}
-.headerlink
-{
-	display:inline-block;
-	position:absolute;
-	top:0px;
-	right:20px;
-}
-.headerlink li
-{
-	display:inline;
-	color:blue;
-}
 /* index.php */
 .main
 {
 	position:relative;
-	top:100px;
+	top:45%;
+	transform:translate(0, -45%);
 	min-width:800px;
 	min-height:330px;
 	width:100%;
 	height:55%;
 }
-.logo
-{
-	display:inline-block;
-	background-size:100% auto;
-	background-image:url("logo.png");
-	background-repeat:no-repeat;
-	position:relative;
-	width:550px;
-	height:215px;
-}
-.searchbar
-{
-	display:inline;
-	position:relative;
-	width:500px;
-	height:38px;
-}
-.searchbar input[type=text]
-{
-	margin:0px;
-	padding:0px;
-	display:inline;
-	position:relative;
-	width:40%;
-	height:38px;
-}
-.searchbar input[type=submit]
-{
-	top:2px;
-	display:inline;
-	position:relative;
-	height:38px;
-}
 /* settings.php */
 .setting
 {
 	padding-top:50px;
-	text-align:center;
+}
+.setting_main
+{
+	position:relative;
+	left:50%;
+	transform:translate(-50%, 0);
 }
 .setting li
 {
 	list-style-type:none;
+}
+.setting_main form
+{
+	display:inline;
 }
 .frame
 {
@@ -103,6 +147,16 @@ a:active
 	width:1000px;
 }
 /* search.php */
+.search_header
+{
+	margin-top:10px;
+	position:relative;
+	min-width:800px;
+}
+.search_content b
+{
+	font-weight:800;
+}
 .headerlogo
 {
 	margin:5px;
@@ -140,7 +194,8 @@ a:active
 }
 .search
 {
-	margin-top:25px;
+	position:absolute;
+	margin-top:100px;
 	margin-left:138px;
 	width:650px;
 }
@@ -166,14 +221,17 @@ a:active
 	overflow:hidden;
 	max-width:650px;
 	max-height:35px;
-	font-size:0.8em;
+	font-size:12px;
 	display: block;
 	color:#121212;
 }
 .frame_category
 {
-	position:relative;
-	padding:0px;
+	position:absolute;
+	top:55px;
+	width:100%;
+	padding:0;
+	margin:0;
 	border-bottom:1px solid #e7e7e7;
 }
 .frame_category > ul
@@ -228,19 +286,23 @@ a:active
 }
 .store_category
 {
-	border:1px solid;
+	border-top:1px solid;
+	border-bottom:1px solid;
 	width:100%;
 }
 .store_category ul
 {
+	display:inline-block;
 	margin:0px;
 	padding-left:100px;
-	display:inline;
 }
 .store_category li
 {
 	padding:5px;
-	display:inline;
+	text-align:center;
+	display:inline-block;
+	min-width:50px;
+	cursor:pointer;
 }
 .item
 {
@@ -311,6 +373,7 @@ a:active
 }
 .purchase_image
 {
+	background:rgba(0, 0, 0, 0.5);
 	border-right:1px solid;
 	float:left;
 	width:50%;
@@ -364,4 +427,13 @@ a:active
 	height:100%;
 	padding:0px;
 	margin:0px;
+}
+.selected
+{
+	background:#e8e8e8;
+	font-weight:bold;
+}
+.hover
+{
+	font-weight:bold;
 }
